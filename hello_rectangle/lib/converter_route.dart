@@ -9,13 +9,7 @@ import 'unit.dart';
 
 final _backgroundColor = Colors.green[100];
 
-/// Converter screen where users can input amounts to convert.
-///
-/// Currently, it just displays a list of mock units.
-///
-/// While it is named ConverterRoute, a more apt name would be ConverterScreen,
-/// because it is responsible for the UI at the route's destination.
-class ConverterRoute extends StatelessWidget {
+class ConverterRoute extends StatefulWidget {
   /// This [Category]'s name.
   final String name;
 
@@ -24,8 +18,6 @@ class ConverterRoute extends StatelessWidget {
 
   /// Units for this [Category].
   final List<Unit> units;
-
-  /// This [ConverterRoute] requires the name, color, and units to not be null.
   const ConverterRoute({
     @required this.name,
     @required this.color,
@@ -34,6 +26,20 @@ class ConverterRoute extends StatelessWidget {
         assert(color != null),
         assert(units != null);
 
+  @override
+  _ConverterRouteState createState() => _ConverterRouteState();
+}
+
+/// Converter screen where users can input amounts to convert.
+///
+/// Currently, it just displays a list of mock units.
+///
+/// While it is named ConverterRoute, a more apt name would be ConverterScreen,
+/// because it is responsible for the UI at the route's destination.
+class _ConverterRouteState extends State<ConverterRoute> {
+
+
+  /// This [ConverterRoute] requires the name, color, and units to not be null.
   // TODO: Create State object for the ConverterRoute
 
   @override
@@ -41,9 +47,9 @@ class ConverterRoute extends StatelessWidget {
     // Here is just a placeholder for a list of mock units
     // TODO: Once the build() function is inside the State object,
     // you'll have to reference this using `widget.units`
-    final unitWidgets = units.map((Unit unit) {
+    final unitWidgets = widget.units.map((Unit unit) {
       return Container(
-        color: color,
+        color: widget.color,
         margin: EdgeInsets.all(8.0),
         padding: EdgeInsets.all(16.0),
         child: Column(
